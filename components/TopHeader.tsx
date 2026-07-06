@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '@/lib/supabase';
 
-export default function TopHeader() {
+export default function TopHeader({ onToggleMenu }: { onToggleMenu?: () => void }) {
   const [isRecalculating, setIsRecalculating] = useState(false);
   const [userName, setUserName] = useState('USER');
   const [currentDate, setCurrentDate] = useState('');
@@ -33,14 +33,19 @@ export default function TopHeader() {
   };
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', borderBottom: '1px solid var(--border-color)', paddingBottom: '24px', marginBottom: '32px' }}>
-      <div>
-        <h2 style={{ fontSize: '14px', fontWeight: 700, color: '#94a3b8', letterSpacing: '1px', textTransform: 'uppercase', marginBottom: '4px' }}>
-          GOOD MORNING, {userName}
-        </h2>
-        <p style={{ fontSize: '20px', fontWeight: 600, color: 'var(--text-sidebar-heading)', margin: 0 }}>
-          {currentDate}
-        </p>
+    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', borderBottom: '1px solid var(--border-color)', paddingBottom: '24px', marginBottom: '32px', flexWrap: 'wrap', gap: '16px' }}>
+      <div style={{ display: 'flex', alignItems: 'center' }}>
+        <button className="hamburger-btn" onClick={onToggleMenu} aria-label="Toggle menu">
+          ☰
+        </button>
+        <div>
+          <h2 style={{ fontSize: '14px', fontWeight: 700, color: '#94a3b8', letterSpacing: '1px', textTransform: 'uppercase', marginBottom: '4px' }}>
+            GOOD MORNING, {userName}
+          </h2>
+          <p style={{ fontSize: '20px', fontWeight: 600, color: 'var(--text-sidebar-heading)', margin: 0 }}>
+            {currentDate}
+          </p>
+        </div>
       </div>
       <button 
         className="btn btn-outline-red" 

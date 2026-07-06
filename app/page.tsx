@@ -311,7 +311,7 @@ export default function Dashboard() {
 
       {/* Briefing Banner */}
       <div className="briefing-banner">
-        <div style={{ display: 'flex', gap: '20px', alignItems: recalcMessage ? 'flex-start' : 'center' }}>
+        <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap', alignItems: recalcMessage ? 'flex-start' : 'center' }}>
           <div style={{ width: '48px', height: '48px', backgroundColor: '#1f2937', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '24px', flexShrink: 0 }}>
             ✨
           </div>
@@ -326,7 +326,7 @@ export default function Dashboard() {
             </p>
           </div>
         </div>
-        <div style={{ display: 'flex', gap: '12px' }}>
+        <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
           <button className="btn" onClick={playBriefing} style={{ flexShrink: 0, backgroundColor: 'white', border: '1px solid var(--border-color)', color: 'var(--text-primary)' }}>
             ▶️ Play Briefing
           </button>
@@ -339,7 +339,7 @@ export default function Dashboard() {
       {/* Overdue Action Center */}
       {overdueTasks.length > 0 && (
         <div style={{ backgroundColor: '#fff1f2', border: '1px solid #fecdd3', borderRadius: '12px', padding: '16px', display: 'flex', flexDirection: 'column', gap: '16px' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '12px' }}>
             <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
               <div style={{ fontSize: '20px' }}>⚠️</div>
               <div>
@@ -364,8 +364,8 @@ export default function Dashboard() {
                 
                 return (
                   <div key={`overdue-${task.id}`} style={{ backgroundColor: 'white', border: '1px solid #fecdd3', borderRadius: '12px', padding: '16px', boxShadow: '0 1px 2px rgba(0,0,0,0.05)' }}>
-                    <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
-                      <div style={{ flex: 1 }}>
+                    <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', alignItems: 'center' }}>
+                      <div style={{ flex: 1, minWidth: '200px' }}>
                         <div style={{ fontSize: '14px', fontWeight: 600, color: 'var(--bg-sidebar)', marginBottom: '4px' }}>
                           {task.title}
                         </div>
@@ -388,7 +388,7 @@ export default function Dashboard() {
 
                     {activeStatusTask === task.id && (
                       <div style={{ padding: '16px', backgroundColor: '#f8fafc', borderRadius: '12px', border: '1px dashed var(--border-color)', marginTop: '16px' }}>
-                        <div style={{ display: 'flex', gap: '16px', marginBottom: '16px' }}>
+                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px', marginBottom: '16px' }}>
                           <label style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '13px', cursor: 'pointer' }}>
                             <input type="radio" name="status" value="Done" checked={statusFormValue === 'Done'} onChange={() => setStatusFormValue('Done')} />
                             ✅ Fully Completed
@@ -490,7 +490,7 @@ export default function Dashboard() {
         
         {/* Left Column: Timeline */}
         <div className="card">
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '24px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px', alignItems: 'flex-start', marginBottom: '24px' }}>
             <div>
               <h3 style={{ fontSize: '18px', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--bg-sidebar)' }}>
                 <span style={{ color: 'var(--accent-blue)' }}>📅</span> {formattedSelectedDateTitle}
@@ -516,7 +516,7 @@ export default function Dashboard() {
                     const routine = item.data as Routine;
                     return (
                       <div key={`routine-${routine.id}`} className="timeline-item">
-                        <div style={{ backgroundColor: '#eff6ff', border: '1px solid #dbeafe', borderRadius: '16px', padding: '16px 20px', display: 'flex', gap: '16px', alignItems: 'center' }}>
+                        <div style={{ backgroundColor: '#eff6ff', border: '1px solid #dbeafe', borderRadius: '16px', padding: '16px', display: 'flex', gap: '16px', flexWrap: 'wrap', alignItems: 'center' }}>
                           <div style={{ width: '40px', height: '40px', backgroundColor: 'white', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '18px', flexShrink: 0, border: '1px solid #e2e8f0' }}>
                             {routine.title.toLowerCase().includes('sleep') ? '🌙' : '🏢'}
                           </div>
@@ -552,7 +552,7 @@ export default function Dashboard() {
                     return (
                       <div key={`task-${task.id}`} className="timeline-item">
                         <div style={{ backgroundColor: task.status === 'Done' ? '#f0fdf4' : task.status === 'Partial' ? '#fffbeb' : task.status === 'Skipped' ? '#f8fafc' : 'var(--bg-card)', border: task.status === 'Done' ? '1px solid #bbf7d0' : task.status === 'Partial' ? '1px solid #fef3c7' : task.status === 'Skipped' ? '1px solid #e2e8f0' : '1px solid var(--border-color)', borderRadius: '16px', padding: '16px 20px', display: 'flex', flexDirection: 'column', gap: '16px', boxShadow: 'var(--shadow-sm)' }}>
-                          <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
+                          <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', alignItems: 'center' }}>
                             <div style={{ width: '40px', height: '40px', backgroundColor: task.status === 'Done' ? '#dcfce7' : task.status === 'Partial' ? '#fef3c7' : task.status === 'Skipped' ? '#f1f5f9' : '#f1f5f9', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '18px', flexShrink: 0, border: task.status === 'Done' ? '1px solid #86efac' : task.status === 'Partial' ? '1px solid #fde68a' : task.status === 'Skipped' ? '1px solid #e2e8f0' : '1px solid #e2e8f0' }}>
                               {task.status === 'Done' ? '✅' : task.status === 'Partial' ? '⏳' : task.status === 'Skipped' ? '❌' : '📝'}
                             </div>
@@ -607,7 +607,7 @@ export default function Dashboard() {
                         {/* Inline Update Status Form */}
                         {activeStatusTask === task.id && (
                           <div style={{ padding: '16px', backgroundColor: '#f8fafc', borderRadius: '12px', border: '1px dashed var(--border-color)', marginTop: '8px' }}>
-                            <div style={{ display: 'flex', gap: '16px', marginBottom: '16px' }}>
+                            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px', marginBottom: '16px' }}>
                               <label style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '13px', cursor: 'pointer' }}>
                                 <input type="radio" name="status" value="Done" checked={statusFormValue === 'Done'} onChange={() => setStatusFormValue('Done')} />
                                 ✅ Fully Completed
