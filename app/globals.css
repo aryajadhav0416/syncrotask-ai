@@ -241,6 +241,7 @@ button {
   border-radius: var(--border-radius-lg);
   padding: 32px;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: 24px;

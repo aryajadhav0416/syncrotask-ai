@@ -138,7 +138,7 @@ export default function FixedRoutines() {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '32px', maxWidth: '800px', margin: '0 auto' }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '16px' }}>
         <div>
           <h2 style={{ fontSize: '24px', fontWeight: 600, color: 'var(--bg-sidebar)', margin: '0 0 8px 0' }}>Settings / Routine Manager</h2>
           <p style={{ margin: 0, color: 'var(--text-secondary)', fontSize: '14px' }}>
@@ -246,10 +246,10 @@ export default function FixedRoutines() {
         {isLoading ? (
           <div style={{ textAlign: 'center', padding: '40px', color: 'var(--text-secondary)' }}>Loading routines...</div>
         ) : routines.map(routine => (
-          <div key={routine.id} className="card" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '20px 24px' }}>
-            <div>
+          <div key={routine.id} className="card" style={{ display: 'flex', flexWrap: 'wrap', gap: '16px', justifyContent: 'space-between', alignItems: 'center', padding: '20px 24px' }}>
+            <div style={{ flex: '1 1 auto', minWidth: '200px' }}>
               <h3 style={{ margin: '0 0 8px 0', fontSize: '16px', fontWeight: 600, color: 'var(--bg-sidebar)' }}>{routine.title}</h3>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '16px' }}>
                 <span style={{ fontSize: '12px', fontWeight: 600, color: 'var(--text-secondary)', padding: '4px 8px', border: '1px solid var(--border-color)', borderRadius: '4px', display: 'flex', alignItems: 'center', gap: '4px' }}>
                   {routine.category === 'Work' ? '💼' : routine.category === 'Travel' ? '🚗' : routine.category === 'Sleep' ? '🌙' : routine.category === 'Study' ? '📚' : routine.category === 'Personal' ? '🧘' : '🏷️'} {routine.category}
                 </span>
