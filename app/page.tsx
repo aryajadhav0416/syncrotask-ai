@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react';
 import { supabase } from '@/lib/supabase';
 import { Task, Routine } from '@/lib/mockData';
 import { findAvailableSlots } from '@/lib/schedulingEngine';
+import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
+import CalendarSync from '@/components/CalendarSync';
 
 export default function Dashboard() {
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -330,6 +332,7 @@ export default function Dashboard() {
           <button className="btn" onClick={playBriefing} style={{ flexShrink: 0, backgroundColor: 'white', border: '1px solid var(--border-color)', color: 'var(--text-primary)' }}>
             ▶️ Play Briefing
           </button>
+          <CalendarSync onSyncComplete={fetchData} />
           <button className="btn btn-primary" onClick={handleEmergencyOverride} disabled={isRecalculating} style={{ flexShrink: 0 }}>
             {isRecalculating ? "🔄 Rebalancing..." : "🔄 Recalculate with AI"}
           </button>
