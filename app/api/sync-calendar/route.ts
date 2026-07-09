@@ -52,7 +52,19 @@ export async function POST(req: Request) {
     if (!calendarResponse.ok) {
       const errorText = await calendarResponse.text();
       console.error('Google Calendar API Error:', errorText);
-      return NextResponse.json({ error: 'Failed to fetch from Google Calendar' }, { status: calendarResponse.status });
+      
+      // Try to parse the JSON error from Google to make it readable
+      let errorMessage = 'Failed to fetch from Google Calendar';
+      try {
+        const errorJson = JSON.parse(errorText);
+        if (errorJson.error && errorJson.error.message) {
+          errorMessage = errorJson.error.message;
+        }
+      } catch (e) {
+        // Not JSON, use generic
+      }
+      
+      return NextResponse.json({ error: errorMessage }, { status: calendarResponse.status });
     }
 
     const calendarData = await calendarResponse.json();
