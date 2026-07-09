@@ -43,7 +43,7 @@ export default function CalendarSync({ onSyncComplete }: { onSyncComplete?: () =
         throw new Error(data.error || 'Failed to sync calendar');
       }
 
-      setSyncMessage({ type: 'success', text: `Successfully synced ${data.count} calendar events!` });
+      setSyncMessage({ type: 'success', text: `Successfully synced ${data.count} calendar events! (Found ${data.totalFetched} total in Google)` });
       if (onSyncComplete) {
         onSyncComplete();
       }

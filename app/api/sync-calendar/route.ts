@@ -103,7 +103,7 @@ export async function POST(req: Request) {
       }
     }
 
-    return NextResponse.json({ success: true, count: insertedCount });
+    return NextResponse.json({ success: true, count: insertedCount, totalFetched: events.length });
 
   } catch (err) {
     console.error('Calendar Sync Error:', err);
